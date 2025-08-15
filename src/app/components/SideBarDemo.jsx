@@ -11,8 +11,21 @@ import {
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { BackgroundLinesDemo } from "./BackgroundLinesDemo";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  SignOutButton,
+  useUser,
+} from '@clerk/nextjs'
+import { MessageSquare } from "lucide-react";
 
 export function SidebarDemo() {
+  const { isLoaded, isSignedIn, user } = useUser();
+  
   const links = [
     {
       label: "Dashboard",
@@ -30,9 +43,9 @@ export function SidebarDemo() {
       icon: <IconSettings className="h-5 w-5 shrink-0 text-neutral-200" />,
     },
     {
-      label: "Logout",
+      label: "Chats",
       href: "#",
-      icon: <IconArrowLeft className="h-5 w-5 shrink-0 text-neutral-200" />,
+      icon: <MessageSquare className="h-5 w-5 shrink-0 text-neutral-200" />,
     },
   ];
 
@@ -56,21 +69,26 @@ export function SidebarDemo() {
             </div>
           </div>
           <div>
-            <SidebarLink
-              link={{
-                label: "Manu Arora",
-                href: "#",
-                icon: (
-                  <img
-                    src="https://assets.aceternity.com/manu.png"
-                    className="h-7 w-7 shrink-0 rounded-full"
-                    width={50}
-                    height={50}
-                    alt="Avatar"
-                  />
-                ),
-              }}
-            />
+            <SignedIn>
+              <UserButton/>
+            </SignedIn>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <SidebarLink
+                  link={{
+                    label: "Login",
+                    href: "#",
+                    icon: (
+                      <img
+                        src="https://www.svgrepo.com/show/447124/login.svg"
+                        className="h-6 w-6 shrink-0"
+                        alt="Login"
+                      />
+                    ),
+                  }}
+                />
+              </SignInButton>
+            </SignedOut>
           </div>
         </SidebarBody>
       </Sidebar>
@@ -94,7 +112,7 @@ export const Logo = () => {
         animate={{ opacity: 1 }}
         className="font-medium whitespace-pre text-white"
       >
-        Acet Labs
+        VibeCraft
       </motion.span>
     </a>
   );
