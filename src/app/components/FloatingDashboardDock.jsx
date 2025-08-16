@@ -8,19 +8,21 @@ import {
   IconNewSection,
   IconTerminal2,
 } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 
 export function FloatingDockDemo() {
+  const router = useRouter();
   const links = [
     {
       title: "Home",
       icon: (
         <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "#",
+      onClick: () => router.push("/")
     },
 
     {
-      title: "Products",
+      title: "Projects",
       icon: (
         <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
@@ -62,17 +64,14 @@ export function FloatingDockDemo() {
     {
       title: "GitHub",
       icon: (
-        <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300 cursor-pointer" />
       ),
-      href: "#",
+      href: "/Github-Connect",
     },
   ];
   return (
     <div className="flex">
-      <FloatingDock
-        // only for demo, remove for production
-        mobileClassName="translate-y-20"
-        items={links} />
+      <FloatingDock items={links} mobileClassName="translate-y-20" />
     </div>
   );
 }
