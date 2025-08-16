@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Spotlight } from "@/components/ui/spotlight";
-import { NewPojectButton } from "./NewProjectButton";
+import { NewProjectButton } from "./NewProjectButton";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
 export function NewProjectSpotlight() {
@@ -40,7 +40,7 @@ export function NewProjectSpotlight() {
           copy.
         </p>
         <div className="mt-1">
-          <NewPojectButton />
+          <NewProjectButton/>
         </div>
       </div>
     </div>
