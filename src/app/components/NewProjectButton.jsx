@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import {
   AlertDialog,
@@ -12,8 +12,10 @@ import {
   AlertDialogCancel,
   AlertDialogAction
 } from "@/components/ui/alert-dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
-export function NewPojectButton() {
+export function NewProjectButton() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -29,11 +31,22 @@ export function NewPojectButton() {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Create New Project</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+          <AlertDialogDescription className="space-y-4">
+            
+            {/* Project Name */}
+            <div className="flex flex-col space-y-2">
+              <Label htmlFor="name">Project Name</Label>
+              <Input id="name" type="text" placeholder="Enter project name" />
+            </div>
+
+            {/*projet description*/}
+            <div className="flex flex-col space-y-2">
+              <Label htmlFor="name">Project Description</Label>
+              <Input id="description" type="text" placeholder="Enter project description" />
+            </div>
           </AlertDialogDescription>
         </AlertDialogHeader>
+
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction>Continue</AlertDialogAction>
