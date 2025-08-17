@@ -2,12 +2,11 @@
 import React from "react";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { ColourfulText } from "@/components/ui/colourful-text";
-import { FloatingDockDemo } from "./FloatingDashboardDock";
 import { FeaturesSectionDemo } from "./Templates";
 import { ProjectHistory } from "./History";
 import { NewProjectSpotlight } from "./NewProject";
 import { useUser } from "@clerk/nextjs";
-
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 export function Dashboard() {
   const { isSignedIn, user, isLoaded } = useUser();
   const username = user?.username;
@@ -34,10 +33,8 @@ export function Dashboard() {
           <input
             type="text"
             placeholder="Search..."
-            className="flex-1 max-w-sm p-4 rounded-3xl h-16 bg-neutral-800 font-bold text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-violet-500 transition"
+            className="flex-1 max-w-sm p-4 rounded-3xl h-16 mr-10 bg-neutral-800 font-bold text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-violet-500 transition"
           />
-
-          <FloatingDockDemo className="relative" />
         </div>
 
         <div className="templates-section">
@@ -52,9 +49,11 @@ export function Dashboard() {
         </div>
 
         <div>
-          <h1 className="text-white font-extrabold text-5xl m-10">
-            Your Projects
-          </h1>
+          <div className="flex items-center gap-10 m-10">
+            <h1 className="text-white font-extrabold text-5xl">
+              Your Projects
+            </h1>
+          </div>
           <ProjectHistory />
         </div>
       </div>

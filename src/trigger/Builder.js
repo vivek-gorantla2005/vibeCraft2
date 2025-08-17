@@ -8,7 +8,7 @@ export const BuildTask = task({
     logger.log("Task started", { payload, ctx });
 
     // Call your LLM agent
-    const result = await runAgent(payload.prompt, payload.userId, payload.projectName);
+    const result = await runAgent(payload.prompt, payload.userId, payload.projectid);
 
     // Optional wait
     await wait.for({ seconds: 5 });

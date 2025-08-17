@@ -4,8 +4,10 @@ import { PlaceholdersAndVanishInputDemo } from "./InputPlaceholder";
 
 export function BackgroundLinesDemo() {
   return (
-    <BackgroundLines className="flex items-center justify-center w-full flex-col px-4 h-full">
-      <PlaceholdersAndVanishInputDemo/>
-    </BackgroundLines>
+    <>
+      <BackgroundLines className="flex items-center justify-center w-full flex-col px-4 h-full">
+        <PlaceholdersAndVanishInputDemo />
+      </BackgroundLines>
+    </>
   );
 }

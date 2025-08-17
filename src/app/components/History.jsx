@@ -21,6 +21,7 @@ export function ProjectHistory() {
     <BentoGrid className="w-[80vw]">
       {projects.length > 0 ? (
         projects.map((project, i) => (
+          <a href={`/projects/${project._id}`}>
           <BentoGridItem
             key={project._id || i}
             title={project.projectname}
@@ -30,7 +31,8 @@ export function ProjectHistory() {
               <IconClipboardCopy className="h-4 w-4 text-neutral-500" />
             }
             className={i % 3 === 0 ? "md:col-span-2" : ""}
-          />
+            />
+            </a>
         ))
       ) : (
         <p className="text-neutral-400">No projects found.</p>
