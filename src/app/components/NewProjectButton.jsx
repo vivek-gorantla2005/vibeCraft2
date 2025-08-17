@@ -23,7 +23,7 @@ export function NewProjectButton() {
   const [projectname, setProjectname] = useState("");
   const [projectdescription, setProjectdescription] = useState("");
   const { user } = useUser();
-  const addProject = projectStore((state)=>state.addProject)
+  const addProject = projectStore((state) => state.addProject)
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -53,11 +53,19 @@ export function NewProjectButton() {
       if (res.ok) {
         const result = await res.json();
         console.log("Project Created:", result);
-        addProject(result);
+
+        const newproject = {
+          projectname: result.project.projectname,
+          projectdescription: result.project.projectdescription,
+          _id: result.project._id,
+        };
+
+        addProject(newproject);
         setProjectname("");
         setProjectdescription("");
         toast.success("Project created successfully!");
-      } else {
+      }
+      else {
         const error = await res.json();
         console.error("Failed to create project:", error);
         toast.error(`${error.message || "Failed to create project"}`);
