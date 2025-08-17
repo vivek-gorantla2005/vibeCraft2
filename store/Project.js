@@ -2,12 +2,15 @@ import { create } from "zustand";
 
 const projectStore = create((set) => ({
     projects: [],
+
     addProject: (project) => set((state) => ({
         projects: [...state.projects, project]
     })),
+
     setProjects: (projects) => set(() => ({
         projects
     })),
+    
     getProjects: async (userId) => {
         try {
             const res = await fetch(`/api/getProjects?userId=${userId}`);

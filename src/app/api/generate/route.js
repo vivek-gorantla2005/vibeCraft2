@@ -4,7 +4,7 @@ export async function POST(request) {
   try {
     console.log("backend hit");
     const body = await request.json();
-    const { prompt, userId, projectName } = body;
+    const { prompt, userId, projectid } = body;
 
     if (!prompt || prompt.trim() === "") {
       return new Response(JSON.stringify({ error: "Prompt is required" }), {
@@ -15,7 +15,7 @@ export async function POST(request) {
     const result = await BuildTask.trigger({
       prompt,
       userId,
-      projectName
+      projectid
     })
 
     return new Response(JSON.stringify(result), {

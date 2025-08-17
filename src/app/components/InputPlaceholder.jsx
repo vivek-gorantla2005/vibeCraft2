@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
+import { useUser } from "@clerk/nextjs";
 
-export function PlaceholdersAndVanishInputDemo() {
+export function PlaceholdersAndVanishInputDemo({projectid}) {
   const placeholders = [
     "What's the first rule of Fight Club?",
     "Who is Tyler Durden?",
@@ -13,7 +14,8 @@ export function PlaceholdersAndVanishInputDemo() {
   ];
 
   const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false); // 🔹 loading state
+  const [loading, setLoading] = useState(false); 
+  const {user} = useUser();
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -21,7 +23,7 @@ export function PlaceholdersAndVanishInputDemo() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // 🔹 start loading
+    setLoading(true); 
     try {
       const res = await fetch("/api/generate", {
         method: "POST",
@@ -30,8 +32,8 @@ export function PlaceholdersAndVanishInputDemo() {
         },
         body: JSON.stringify({
           prompt: input,
-          userId: "mockUser123",
-          projectName: "mockProject456",
+          userId: user.id,
+          projectid: projectid,
         }),
       });
 

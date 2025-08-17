@@ -22,9 +22,21 @@ import {
   useUser,
 } from '@clerk/nextjs'
 import { MessageSquare } from "lucide-react";
+import projectStore from "store/Project";
+import { useEffect } from "react";
+
 
 export function SidebarDemo() {
   const { isLoaded, isSignedIn, user } = useUser();
+   const { projects, getProjects } = projectStore();
+
+  useEffect(() => {
+    if (user?.id) {
+      getProjects(user.id);
+    }
+  }, [user]);
+
+  console.log(projects);
   
   const links = [
     {
@@ -43,8 +55,8 @@ export function SidebarDemo() {
       icon: <IconSettings className="h-5 w-5 shrink-0 text-neutral-200" />,
     },
     {
-      label: "Chats",
-      href: "#",
+      label: "Projects",
+      href: "/projects",
       icon: <MessageSquare className="h-5 w-5 shrink-0 text-neutral-200" />,
     },
   ];
