@@ -1,7 +1,7 @@
 import { Type } from "@google/genai";
 import Sandbox from "@e2b/code-interpreter";
 
-export const readFileFromSandbox = async ({ sandboxId, filePath }) => {
+export const readFileFromSandbox = async ({projectId,sandboxId, filePath }) => {
   try {
     const sandbox = await Sandbox.connect(sandboxId);
     console.log(`Connected to sandbox with ID: ${sandbox.sandboxId}`);

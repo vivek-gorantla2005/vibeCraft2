@@ -80,7 +80,7 @@ export async function runAgent(userProblem, userId, projectId) {
       // call tool with sandboxId string and other args
       let result;
       try {
-        result = await funCall({ sandboxId, ...args });
+        result = await funCall({projectId,sandboxId, ...args });
       } catch (err) {
         console.error(`Tool ${name} threw:`, err);
         result = { error: String(err) };
