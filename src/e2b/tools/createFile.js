@@ -1,8 +1,9 @@
 import Sandbox from "@e2b/code-interpreter";
 import { Type } from "@google/genai";
 
-export const createFile = async ({ sandbox, filepath, content }) => {
+export const createFile = async ({ sandboxId, filepath, content }) => {
   try {
+    const sandbox = await Sandbox.connect(sandboxId);
     const cwd = await sandbox.commands.run('pwd');   
     const p = cwd.stdout.trim();
     console.log('Current working directory:', p);

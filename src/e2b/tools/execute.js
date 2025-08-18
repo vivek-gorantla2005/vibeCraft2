@@ -1,8 +1,9 @@
 import { Sandbox } from '@e2b/code-interpreter';
 import { Type } from '@google/genai';
 
-export const executeCommand = async ({ sandbox, command }) => {
+export const executeCommand = async ({ sandboxId, command }) => {
   try {
+    const sandbox = await Sandbox.connect(sandboxId);
     const projectPath = `/home/user/my-app`;
 
     console.log(`Executing command in ${projectPath}: ${command}`);
