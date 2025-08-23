@@ -23,15 +23,19 @@ RUN git clone https://github.com/vivek-gorantla2005/react-ts-setup my-app
 
 WORKDIR /home/user/my-app
 
-# Install dependencies (cached in Docker layers if package.json doesn’t change)
 RUN npm install
 
 # Copy startup script
 COPY script.sh /script.sh
 RUN chmod +x /script.sh
 
+# Install code-server (VS Code in browser)
+RUN curl -fsSL https://code-server.dev/install.sh | sh
+
+
 # Expose Vite dev server port
 EXPOSE 49999
+EXPOSE 8080
 
 # Default command
 CMD ["/script.sh"]
